@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-service-deployment
+  labels:
+    app: hello-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-service
+  template:
+    metadata:
+      labels:
+        app: hello-service
+    spec:
+      containers:
+      - name: hello-service
+        image: <YOUR_DOCKER_REGISTRY>/hello-service:latest
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
